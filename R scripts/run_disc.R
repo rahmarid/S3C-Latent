@@ -31,7 +31,7 @@ for (i in 1:20) {
                                                   allIteration = num_iteration, allPop = all_Pop,
                                                   allMutRate = allMut, allCrossRate = allCross,
                                                   longitudinal = longi, numTime = num_time,
-                                                  co = "covariance", consMatrix = cons_matrix, 
+                                                  consMatrix = cons_matrix, 
                                                   threshold = th, mixture = mix, 
                                                   latentList = allLatent4[[i]])
   
