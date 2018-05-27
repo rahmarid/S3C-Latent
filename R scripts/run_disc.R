@@ -6,7 +6,7 @@ registerDoParallel(c2)
 
 
 
-load("data4_400_disc.RData")
+load("data4_400_disc.RData") #to change the data
 numSubset <- 35
 num_iteration <- 30 
 all_Pop <- 50
@@ -30,7 +30,7 @@ result <- list()
 for (i in 1:20) {
   
   print(i)
-  result[[i]] <- stablespecImptLatent::stableSpec3(theData = data4_400_d$newSample[[i]], nSubset = numSubset,
+  result[[i]] <- s3clatent::stableSpec3(theData = data4_400_d$newSample[[i]], nSubset = numSubset,
                                                   allIteration = num_iteration, allPop = all_Pop,
                                                   allMutRate = allMut, allCrossRate = allCross,
                                                   longitudinal = longi, numTime = num_time,
