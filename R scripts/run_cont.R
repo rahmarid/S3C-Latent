@@ -1,27 +1,22 @@
 library(parallel)
 library(doParallel)
-library(stablespecImptLatent)
-c1 <- makeCluster(25)
+library(s3clatent)
+c1 <- makeCluster(25) #set a cluster of 25 cores
 registerDoParallel(c1)
 
 
 
 load("data4_400_cont.RData") #to change the data
-numSubset <- 25 #to change the number of subset here
-num_iteration <- 30 # to change the number of iterations here
-all_Pop <- 50 #to change the number of models here
-allMut <- 0.01 #to change mutation rate
-allCross <- 0.45 #to change crossover rate
-longi <- FALSE # current version of S3C-Latent only supports cross-sectional data
+numSubset <- 25 #to change the number of subsets 
+num_iteration <- 30 # to change the number of iterations 
+all_Pop <- 50 #to change the number of models 
+allMut <- 0.01 #to change mutation rate/probability
+allCross <- 0.45 #to change crossover rate/probability
+longi <- FALSE #set to FALSE as the current version of S3C-Latent only supports cross-sectional data
 num_time <- 1 # set to 1
 the_co <- "covariance" #or "correlation"
 cons_matrix <- NULL #see documentation to set a constraint matrix
-th <- 0.6 
-to_plot <- FALSE
-mix <- FALSE
-imputed <- FALSE
-toMultiple <- FALSE
-toComplement <- FALSE
+th <- 0.6 #threshold of stability selection
 
 
 
@@ -35,9 +30,8 @@ for (i in 1:20) {
                                                   allMutRate = allMut, allCrossRate = allCross,
                                                   longitudinal = longi, numTime = num_time,
                                                   co = "covariance", consMatrix = cons_matrix, threshold = th,
-                                                  toPlot = to_plot, mixture = mix, impute = imputed, 
-                                                  latentList = allLatent4[[i]],
-                                                  multiple = toMultiple, complementary = toComplement)
+                                                  latentList = allLatent4[[i]])
+                                                  
   
 }
 stopCluster(c1)
